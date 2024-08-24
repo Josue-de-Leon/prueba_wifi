@@ -1,14 +1,10 @@
 import express from "express";
-import axios from "axios";
 import { db } from "./db/connection.js";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 const app = express();
-const port = 3000;
+const port = 5195;
 
-
+app.use(express.json());
 db.connect((err) => {
   if (err) {
     console.error("Error al conectar a la base de datos: ", err);
@@ -17,7 +13,7 @@ db.connect((err) => {
   console.log("Conexión a la base de datos exitosa");
 });
 
-app.use(express.json());
+
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en el puerto ${port}`);
