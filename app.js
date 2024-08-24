@@ -1,6 +1,6 @@
 import express from "express";
 import axios from "axios";
-import mysql from "mysql2/promise";
+import { db } from "./db/connection.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -8,14 +8,6 @@ dotenv.config();
 const app = express();
 const port = 3000;
 
-// Configuración de la base de datos
-const db = await mysql.createConnection({
-  host: process.env.HOST,
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE,
-  port: process.env.PORT,
-});
 
 db.connect((err) => {
   if (err) {
